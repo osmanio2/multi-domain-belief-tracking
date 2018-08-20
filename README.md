@@ -1,4 +1,4 @@
-# multi-domain-belief-tracking
+# Large-Scale Multi-Domain Belief Tracking with Knowledge Sharing
 The implementation of the model proposed in the Large-Scale Multi-Domain Belief Tracking with Knowledge Sharing [paper](https://arxiv.org/pdf/1807.06517) 
 
 ## Requirements
