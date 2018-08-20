@@ -1,0 +1,4 @@
+tqdm
+numpy
+tensorflow-gpu==1.4.0
+click

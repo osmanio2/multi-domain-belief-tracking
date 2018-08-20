@@ -1,0 +1,8 @@
+/models/
+/graphs/
+/results/
+/data/
+.idea/
+/__pycache__/
+/word-vectors/
+/test/
