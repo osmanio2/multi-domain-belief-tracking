@@ -37,6 +37,6 @@ To evaluate the model on the test dataset
 
 ```python main.py test [--args=value]```
 
-This uses the same arguments as above. It generates a log file at *results/log-1.txt*, which includes the original dialogues with the true labels and the model predictions. 
+This uses the same arguments as above, except `--dev` is not included as cpu is used for testing. It generates a log file at *results/log-1.txt*, which includes the original dialogues with the true labels and the model predictions. 
 
 Currently there is a **bug** that shuffles the model predictions across dialogues. So to go around it, **make sure to use a batch size of 1**, i.e. `--batch_size=1`. 
