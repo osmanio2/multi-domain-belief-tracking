@@ -5,14 +5,19 @@ from zipfile import ZipFile
 from urllib.request import urlopen, urlretrieve
 import os
 from io import BytesIO
+import shutil
 
 word_vectors_url = "word-vectors/paragram_300_sl999.txt"
-data_url = "data/multi-woz/data.json"
 dataset_url = "https://www.repository.cam.ac.uk/bitstream/handle/1810/278720/MultiWOZ_1.0.zip"
+dataset_url2 = "https://www.repository.cam.ac.uk/bitstream/handle/1810/280608/MULTIWOZ2.zip?sequence=3&isAllowed=y"
 vectors_url = "https://www.dropbox.com/s/liverep9vmsm9wu/paragram_300_sl999.zip?dl=1"
+
 val_list_url = "data/multi-woz/valListFile.json"
 test_list_url = "data/multi-woz/testListFile.json"
+data_url = "data/multi-woz/data.json"
+
 domains = ["restaurant", "taxi", "train", "attraction", "hotel"]
+
 data_train = {}
 data_test = {}
 data_val = {}
@@ -37,10 +42,19 @@ if not os.path.exists("data"):
 
 if not os.path.exists(data_url):
     print("Downloading and unzipping the MultiWoz dataset")
-    resp = urlopen(dataset_url)
+    answer = int(input('Press 0 for the data from the ACL paper or 1 for the final data.'))
+    if answer == 0:
+        resp = urlopen(dataset_url)
+    else:
+        resp = urlopen(dataset_url2)
     zip_ref = ZipFile(BytesIO(resp.read()))
     zip_ref.extractall("data/multi-woz")
     zip_ref.close()
+
+if answer == 1:
+    shutil.copy('data/multi-woz/MULTIWOZ2 2/data.json', 'data/multi-woz/')
+    shutil.copy('data/multi-woz/MULTIWOZ2 2/valListFile.json', 'data/multi-woz/')
+    shutil.copy('data/multi-woz/MULTIWOZ2 2/testListFile.json', 'data/multi-woz/')
 
 val_list = []
 with open(val_list_url, 'r') as f:
